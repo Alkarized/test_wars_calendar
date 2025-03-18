@@ -124,6 +124,9 @@ public class MagicCalendarTest {
     @Test
     public void test13() {
         assertFalse(calendar.cancelMeeting("Alice", "10:00"));
+        assertFalse(calendar.cancelMeeting("Alice2", "29:51"));
         assertEquals(calendar.getMeetings("Alice").size(), 0);
+        assertEquals(calendar.getMeetings("Alice1").size(), 0);
+        assertEquals(calendar.getMeetings("Alice2").size(), 0);
     }
 }
