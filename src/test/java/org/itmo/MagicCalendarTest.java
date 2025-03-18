@@ -18,6 +18,13 @@ public class MagicCalendarTest {
     @Test
     void testReplaceWorkWithPersonal() {
         assertTrue(calendar.scheduleMeeting("Alice", "10:00", MagicCalendar.MeetingType.WORK));
+
+    }
+
+    @Test
+    void test0() {
+        assertTrue(calendar.scheduleMeeting("Alice", "01:01", MagicCalendar.MeetingType.WORK));
+        assertTrue(calendar.scheduleMeeting("Alice", "09:51", MagicCalendar.MeetingType.WORK));
     }
 
     @Test
