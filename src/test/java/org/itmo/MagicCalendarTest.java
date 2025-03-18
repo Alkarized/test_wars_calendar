@@ -29,10 +29,10 @@ public class MagicCalendarTest {
 
     @Test
     void test1() {
-        assertFalse(calendar.scheduleMeeting("Alice", "23:61", MagicCalendar.MeetingType.PERSONAL));
-        assertFalse(calendar.scheduleMeeting("Alice", "25:00", MagicCalendar.MeetingType.PERSONAL));
-        assertFalse(calendar.scheduleMeeting("Alice", "23:61", MagicCalendar.MeetingType.WORK));
-        assertFalse(calendar.scheduleMeeting("Alice", "25:00", MagicCalendar.MeetingType.WORK));
+        assertThrows(IllegalArgumentException.class, () -> calendar.scheduleMeeting("Alice", "23:61", MagicCalendar.MeetingType.PERSONAL));
+        assertThrows(IllegalArgumentException.class, () -> calendar.scheduleMeeting("Alice", "25:00", MagicCalendar.MeetingType.PERSONAL));
+        assertThrows(IllegalArgumentException.class, () -> calendar.scheduleMeeting("Alice", "23:61", MagicCalendar.MeetingType.WORK));
+        assertThrows(IllegalArgumentException.class, () -> calendar.scheduleMeeting("Alice", "25:00", MagicCalendar.MeetingType.WORK));
 
     }
 
@@ -47,7 +47,7 @@ public class MagicCalendarTest {
     @Test
     public void test3() {
         assertTrue(calendar.scheduleMeeting("Alice", "10:00", MagicCalendar.MeetingType.WORK));
-        assertFalse(calendar.scheduleMeeting("Alice", "10:00", MagicCalendar.MeetingType.PERSONAL));
+        assertTrue(calendar.scheduleMeeting("Alice", "10:00", MagicCalendar.MeetingType.PERSONAL));
         assertFalse(calendar.scheduleMeeting("Alice", "10:05", MagicCalendar.MeetingType.PERSONAL));
         assertFalse(calendar.scheduleMeeting("Alice", "10:59", MagicCalendar.MeetingType.PERSONAL));
     }
@@ -131,9 +131,14 @@ public class MagicCalendarTest {
     @Test
     public void test13() {
         assertFalse(calendar.cancelMeeting("Alice", "10:00"));
-        assertFalse(calendar.cancelMeeting("Alice2", "29:51"));
+        assertThrows(IllegalArgumentException.class, () -> calendar.cancelMeeting("Alice2", "29:51"));
         assertEquals(calendar.getMeetings("Alice").size(), 0);
         assertEquals(calendar.getMeetings("Alice1").size(), 0);
         assertEquals(calendar.getMeetings("Alice2").size(), 0);
+    }
+
+    @Test
+    public void test14 () {
+
     }
 }
