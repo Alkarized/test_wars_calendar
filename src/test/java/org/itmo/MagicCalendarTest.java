@@ -139,6 +139,7 @@ public class MagicCalendarTest {
 
     @Test
     public void test14 () {
-
+        assertTrue(calendar.scheduleMeeting("Alice1", "10:00", MagicCalendar.MeetingType.WORK));
+        assertFalse(calendar.scheduleMeeting("Alice1", "09:10", MagicCalendar.MeetingType.WORK));
     }
 }
